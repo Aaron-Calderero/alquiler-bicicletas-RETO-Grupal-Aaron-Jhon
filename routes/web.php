@@ -11,7 +11,7 @@ use App\Http\Controllers\ProfileController;
 | Rutas Públicas (Sin Autenticación)
 |---------------------------------------------------------------------
 */
-
+/*
 // Página principal
 Route::get('/', function () {
     return view('welcome');
@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+*/
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Catálogo público de bicicletas
-Route::get('/bikes', [BikeController::class, 'index'])->name('bikes.index');
+Route::get('/', [BikeController::class, 'index'])->name('bikes.index');
 
 // Ver los detalles de una bicicleta específica
 Route::get('/bikes/{bike}', [BikeController::class, 'show'])->name('bikes.show');
