@@ -14,7 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="">
+    <body>
         <div class="">
             <div>
                 <a href="/">
@@ -23,7 +23,7 @@
             </div>
 
             <div class="">
-                {{ $slot }}
+                @yield('content')
             </div>
         </div>
     </body>
