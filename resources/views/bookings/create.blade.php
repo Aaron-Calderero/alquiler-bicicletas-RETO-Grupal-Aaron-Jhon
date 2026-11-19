@@ -1,43 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create</title>
-</head>
-<body>
-    <header>
-        <h1>Reserva</h1>
-        <nav>
+@extends('layouts.app')
 
-            <!-- Navigation Links -->
-            <div>
-                <a href="{{ route('bikes.index') }}">Bikes</a>
-            </div>
+@section('title', 'create')  
 
-            <!-- Authentication Links -->
-            <div>
+@section('header')
+    <h1>Reserva</h1>
+@endsection
 
-                @guest
-                    <a href="{{ route('login') }}">Log In</a>
-
-                    <a href="{{ route('register') }}">Register</a>
-                @endguest
-
-                @auth
-                    <a href="{{ route('profile.edit') }}">Profile</a>
-
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit">Log Out</button>
-                    </form>
-                @endauth
-
-            </div>
-
-        </nav>
-
-    </header>
+@section('content')
     <a href="{{ route('bikes.index') }}">Volver al Catalogo</a>
     <form action="/booking">
         <label for="user_id">user_id</label>
@@ -50,5 +19,4 @@
         <input type="datetime-local" name="end_time" id="end_time" required><br>
         <input type="submit" value="Crear">
     </form>    
-</body>
-</html>
+@endsection
