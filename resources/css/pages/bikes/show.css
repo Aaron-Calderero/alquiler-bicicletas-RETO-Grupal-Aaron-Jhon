@@ -1,17 +1,12 @@
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .product-detail {
     display: flex;
     width: 90%;
     max-width: 1200px;
     margin: var(--spacing-xl) auto;
-    background-color: var(--bg-surface);
-    color: var(--text-primary);
+    background-color: var(--md-sys-color-surface-container-lowest);
+    color: var(--md-sys-color-on-surface);
     border-radius: var(--border-radius);
+    border: 1px solid var(--md-sys-color-outline);
 }
 
 .product-detail__media {
@@ -31,9 +26,9 @@ body {
 }
 
 .product-detail__badge {
-    background-color: var(--color-tertiary);
+    background-color: var(--md-sys-color-tertiary);
     padding: var(--spacing-xs) var(--spacing-sm);
-    color: var(--text-on-primary);
+    color: var(--md-sys-color-on-tertiary);
     border-radius: var(--border-radius);
 }
 
@@ -45,16 +40,16 @@ body {
 .product-detail__button {
     text-decoration: none;
     padding: var(--spacing-sm);
-    color: var(--text-on-primary);
+    color: var(--md-sys-color-on-primary);
     text-align: center;
     margin: 0 auto;
     width: 95%;
-    background-color: var(--color-secondary);
+    background-color: var(--md-sys-color-primary);
     border-radius: var(--border-radius);
 }
 
 .product-detail__button:hover {
-    background-color: var(--color-primary);
+    background-color: var(--md-sys-color-on-primary-container);
     transition: ease .2s;
 }
 
