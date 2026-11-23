@@ -17,6 +17,7 @@
 
 @import './layouts/header.css';
 @import './layouts/appLayout.css';
+@import './layouts/footer.css';
 
 @import './pages/bikes/index.css';
 @import './pages/bikes/show.css';
