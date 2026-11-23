@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--bg-page);
+}
+
+.carrousel {
+    width: 100%;
+    overflow: hidden;
+}
+
+.carrousel__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 180px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.bike-section {
+    padding: var(--spacing-md);
+}
+
+.bike-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-md);
+}
+
+.bike-card {
+    border-radius: var(--border-radius);
+    background-color: var(--bg-surface);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.457);
+}
+
+.bike-card__image {
+    width: 100%;
+    max-width: 380px;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.bike-card__content {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-md);
+}
+
+.bike-card__title {
+    padding: 0;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.bike-card__model {
+    color: var(--color-primary);
+}
+
+.bike-card__price {
+    color: var(--color-secondary);
+}
+
+.bike-card__button {
+    text-decoration: none;
+    padding: var(--spacing-sm);
+    color: var(--text-on-primary);
+    text-align: center;
+    margin: 0 auto;
+    width: 95%;
+    background-color: var(--color-secondary);
+    border-radius: var(--border-radius);
+}
+
+.bike-card__button:hover {
+    background-color: var(--color-primary);
+    transition: ease .2s;
+}
+
+
+
+@media (max-width: 996px) {
+    .bike-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .bike-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bike-card__image {
+        max-width: 400px;
+    }
+}

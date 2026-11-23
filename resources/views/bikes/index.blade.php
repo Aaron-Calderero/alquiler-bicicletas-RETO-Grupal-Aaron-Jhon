@@ -2,48 +2,32 @@
 
 @section('title', 'Bikes')  
 
-@section('header')
-    <h1>Bicicletas</h1>
-@endsection
-
 @section('content')
-    <p>Bienvenido a la sección de bicicletas. Aquí puedes explorar nuestro catálogo de bicicletas disponibles para alquiler.</p>
+    <div class="carrousel">
+        <img src="https://www.30diasenbici.com/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-05-at-09.50.47-e1680764757912.jpeg" alt="Imagen de carrousel para presentar la pagina" class="carrousel__image">
+    </div>
 
-    <section class="">
-        <h2>Catalogo</h2>
-        <nav>
-            
-        </nav>
-        <table>
+    <section class="bike-section" >
+        <h2 class="bike-section__title" >Catalog</h2>
 
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Serial_number</th>
-                    <th>Model</th>
-                    <th>Price_per_hour</th>
-                    <th>Status</th>
-                    <th>Detalles</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class="bike-grid">
+            @forelse($bikes as $bike)
 
-        @forelse($bikes as $bike)
+            <x-bikes.card>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFZI2zKcRP0wDYg-riMT4KSMXaAhYfDIi86i38dUhAE49SPncAh8TLiCO3&s=10" alt="Imagen de una bicicleta" class="bike-card__image">
+                <div class="bike-card__content">
+                    <h3 class="bike-card__title">{{ $bike->serial_number }}</h3>
+                    <p class="bike-card__model">{{ __($bike->model) }}</p>
+                    <p class="bike-card__price"> {{__('Price')}} {{ $bike->price_per_hour }} euros</p>
+                    <a href="{{ route('bikes.show', $bike) }}" class="bike-card__button">Details</a>
+                </div>
+            </x-bikes.card>
 
-                <tr>
-                    <td>{{$bike->id}}</td>
-                    <td>{{$bike->serial_number}}</td>
-                    <td>{{$bike->model}}</td>
-                    <td>{{$bike->price_per_hour}}</td>
-                    <td>{{$bike->status}}</td>
-                    <td><a href="{{ route('bikes.show', $bike) }}">Detalles</a></td>
-                </tr>
+            @empty
+                <h3>There are no bicycles</h3>
 
-        @empty
-            <h3>No hay bicicletas en estos momentos</h3>
-        @endforelse
-            </tbody>
-        </table>
+            @endforelse            
+        </div>
 
     </section>
 @endsection
