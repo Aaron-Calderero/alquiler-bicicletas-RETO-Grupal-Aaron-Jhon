@@ -1,26 +1,31 @@
-<nav class="navbar">
-    <a href="{{ route('bikes.index') }}" class="navbar-logo">
-        <x-application-logo style="width: 40px; height: 40px;" />
-    </a>
-
-    <div class="navbar-links">
-        <a href="{{ route('bikes.index') }}">Bikes</a>
-
-        @auth
-            <a href="{{ route('bookings.index') }}">Mis reservas</a>
-            <a href="{{ route('profile.edit') }}">Profile</a>
-
-            <span class="navbar-user">{{ Auth::user()->name }}</span>
-
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit">Log Out</button>
-            </form>
-        @endauth
-
-        @guest
-            <a href="{{ route('login') }}">Log In</a>
-            <a href="{{ route('register') }}">Register</a>
-        @endguest
+<header class="header">
+    <div class="header__brand">
+        <a href="{{ route('bikes.index') }}" class="header__logo">
+            <x-application-logo style="width: 8rem;" />
+        </a>
+        <h1 class="header__title">Bill-Bike Rental</h1>
     </div>
-</nav>
+    <nav class="navbar">
+
+        <div class="navbar__links">
+            <a href="{{ route('bikes.index') }}" class="navbar__link">Bikes</a>
+
+            @auth
+                <a href="{{ route('bookings.index') }}" class="navbar__link">Mis reservas</a>
+                <a href="{{ route('profile.edit') }}" class="navbar__link">Profile</a>
+
+                <span class="navbar-user" class="navbar__user" >{{ Auth::user()->name }}</span>
+
+                <form method="POST" action="{{ route('logout') }}" class="navbar__logout-form">
+                    @csrf
+                    <button type="submit" class="navbar__logout-button">Log Out</button>
+                </form>
+            @endauth
+
+            @guest
+                <a href="{{ route('register') }}" class="navbar__link" >Register</a>
+                <a href="{{ route('login') }}" class="navbar__link" >Log In</a>
+            @endguest
+        </div>
+    </nav>
+</header>

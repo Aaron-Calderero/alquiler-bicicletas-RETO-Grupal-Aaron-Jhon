@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+@import './base/variables.css';
+
+@import './layouts/header.css';
+
+@import './pages/bikes/index.css';
+@import './pages/bikes/show.css';

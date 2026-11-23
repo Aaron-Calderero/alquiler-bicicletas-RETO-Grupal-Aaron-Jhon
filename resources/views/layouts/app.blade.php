@@ -16,16 +16,8 @@
     </head>
     <body class="">
         <div class="">
-            @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @hassection('header')
-                <header class="">
-                    <div class="">
-                        @yield('header')
-                    </div>
-                </header>
-            @endif
+            @include('layouts.navigation')
 
             <!-- Page Content -->
             <main>
