@@ -24,6 +24,10 @@
             </select>
         </div>
 
+        @if (session('error'))
+            <p>{{ session('error') }}</p>
+        @endif
+
         <p id="no-results" class="bike-section__empty bike-section__empty--hidden">
             No bicycles match the selected filters.
         </p>
@@ -36,6 +40,7 @@
                 <div class="bike-card__content">
                     <h3 class="bike-card__title">{{ $bike->serial_number }}</h3>
                     <p class="bike-card__model">{{ __($bike->model) }}</p>
+                    <p class="bike-card__status">{{ $bike->status }}</p>
                     <p class="bike-card__price"> {{__('Price')}} {{ $bike->price_per_hour }} euros</p>
                     <a href="{{ route('bikes.show', $bike) }}" class="bike-card__button">Details</a>
                 </div>
