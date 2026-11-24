@@ -1,0 +1,113 @@
+.carrousel {
+    width: 100%;
+    overflow: hidden;
+}
+
+.carrousel__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 180px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.bike-section {
+    padding: var(--spacing-md);
+}
+
+.bike-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-md);
+}
+
+.bike-card {
+    border-radius: var(--border-radius);
+    background-color: var(--md-sys-color-surface-container-lowest);
+    border: 1px solid var(--md-sys-color-outline);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.457);
+}
+
+.bike-card__image {
+    width: 100%;
+    max-width: 380px;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.bike-card__content {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-md);
+}
+
+.bike-card__title {
+    padding: 0;
+    margin: 0;
+    color: var(--md-sys-color-on-surface);
+}
+
+.bike-card__model {
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.bike-card__price {
+    color: var(--md-sys-color-primary);
+}
+
+.bike-card__button {
+    text-decoration: none;
+    padding: var(--spacing-sm);
+    color: var(--md-sys-color-on-primary);
+    text-align: center;
+    margin: 0 auto;
+    width: 95%;
+    background-color: var(--md-sys-color-primary);
+    border-radius: var(--border-radius);
+}
+
+.bike-card__button:hover {
+    background-color: var(--md-sys-color-on-primary-container);
+    transition: ease .2s;
+}
+
+.bike-section__controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.bike-section__select {
+    padding: .6rem;
+    border-radius: var(--border-radius);
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    font-weight: bold;
+}
+
+.bike-card--hidden,
+.bike-section__empty--hidden {
+    display: none;
+}
+
+
+@media (max-width: 996px) {
+    .bike-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .bike-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bike-card__image {
+        max-width: 400px;
+    }
+}

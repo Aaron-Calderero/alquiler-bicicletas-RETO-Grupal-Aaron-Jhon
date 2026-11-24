@@ -1,0 +1,66 @@
+.product-detail {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    margin: var(--spacing-xl) auto;
+    background-color: var(--md-sys-color-surface-container-lowest);
+    color: var(--md-sys-color-on-surface);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--md-sys-color-outline);
+}
+
+.product-detail__media {
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-detail__image {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: var(--border-radius);
+}
+
+.product-detail__info {
+    padding: var(--spacing-md);
+}
+
+.product-detail__badge {
+    background-color: var(--md-sys-color-tertiary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: var(--md-sys-color-on-tertiary);
+    border-radius: var(--border-radius);
+}
+
+.product-detail__booking {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-detail__button {
+    text-decoration: none;
+    padding: var(--spacing-sm);
+    color: var(--md-sys-color-on-primary);
+    text-align: center;
+    margin: 0 auto;
+    width: 95%;
+    background-color: var(--md-sys-color-primary);
+    border-radius: var(--border-radius);
+}
+
+.product-detail__button:hover {
+    background-color: var(--md-sys-color-on-primary-container);
+    transition: ease .2s;
+}
+
+@media (max-width: 750px) {
+    .product-detail {
+        flex-direction: column;
+    }
+
+    .product-detail__image {
+        margin: 0 auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+    }
+}

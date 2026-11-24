@@ -14,23 +14,17 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="">
+    <body class="light">
         <div class="">
             @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @hassection('header')
-                <header class="">
-                    <div class="">
-                        @yield('header')
-                    </div>
-                </header>
-            @endif
 
             <!-- Page Content -->
             <main>
                 @yield('content')
             </main>
+
+            @include('layouts.footer')
+
         </div>
     </body>
 </html>
