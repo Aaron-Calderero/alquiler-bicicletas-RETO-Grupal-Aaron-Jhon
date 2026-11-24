@@ -1,101 +1,89 @@
 @extends('layouts.app')
 
-@section('title', 'Mis reservas')  
-
-@section('header')
-    <h1>Reserva</h1>
-@endsection
+@section('title', 'Mis reservas')
 
 @section('content')
-
-    {{-- Mensajes flash --}}
-    @if (session('success'))
-        <div class="">
-            {{ session('success') }}
-        </div>
-    @endif
-    @if (session('error'))
-        <div class="">
-            {{ session('error') }}
-        </div>
-    @endif
-
     @php
-        $statusStyles = [
-            'pending'   => 'bg-yellow-100 text-yellow-800',
-            'confirmed' => 'bg-green-100 text-green-800',
-            'cancelled' => 'bg-red-100 text-red-800',
-            'completed' => 'bg-gray-200 text-gray-700',
-            'active'    => 'bg-blue-100 text-blue-800',
-        ];
         $statusLabels = [
             'pending'   => 'Pendiente',
-            'confirmed' => 'Confirmada',
-            'cancelled' => 'Cancelada',
-            'completed' => 'Finalizada',
             'active'    => 'Activa',
+            'completed' => 'Finalizada',
+            'cancelled' => 'Cancelada',
         ];
     @endphp
 
-    <div class="">
-        <h1 class="">Mis reservas</h1>
-        <a href="{{ route('bikes.index') }}" class="">+ Nueva reserva (ver catálogo)</a>
-    </div>
-
-    <div class="">
-        <table class="">
-            <thead class="">
-                <tr>
-                    <th class="">Bicicleta</th>
-                    <th class="">Inicio</th>
-                    <th class="">Fin</th>
-                    <th class="">Total</th>
-                    <th class="">Estado</th>
-                    <th class="">Acciones</th>
-                </tr>
-            </thead>
-            <tbody class="">
-                @forelse ($bookings as $booking)
-                    <tr>
-                        <td class="">{{ $booking->bike->model }}</td>
-                        <td class="">{{ \Carbon\Carbon::parse($booking->start_time)->format('d/m/Y H:i') }}</td>
-                        <td class="">{{ \Carbon\Carbon::parse($booking->end_time)->format('d/m/Y H:i') }}</td>
-                        <td class="">{{ number_format($booking->total_price, 2, ',', '.') }} €</td>
-                        <td class="">
-                            <span class="">
-                                {{ $statusLabels[$booking->status] ?? $booking->status }}
-                            </span>
-                        </td>
-                        <td class="">
-                            <a href="{{ route('bookings.show', $booking) }}"
-                                class="">Ver</a>
-
-                            @if (!in_array($booking->status, ['cancelled', 'completed']))
-                                <form method="POST" action="{{ route('bookings.cancel', $booking) }}" class=""
-                                        onsubmit="return confirm('¿Seguro que quieres cancelar esta reserva?');">
-                                    @csrf
-                                    @method('PATCH')
-                                    <button type="submit"
-                                            class="">Cancelar</button>
-                                </form>
-                            @endif
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="6" class="">
-                            Aún no tienes reservas.
-                            <a href="{{ route('bikes.index') }}" class="">Ver catálogo</a>
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-
-    @if ($bookings instanceof \Illuminate\Pagination\AbstractPaginator && $bookings->hasPages())
-        <div class="">
-            {{ $bookings->links() }}
+    <section class="booking-list">
+        <div class="booking-list__header">
+            <h1 class="booking-list__title">Mis reservas</h1>
+            <a href="{{ route('bikes.index') }}" class="booking-button">+ Nueva reserva</a>
         </div>
-    @endif
+
+        @if (session('success'))
+            <p class="booking-alert booking-alert--success">{{ session('success') }}</p>
+        @endif
+
+        @if (session('error'))
+            <p class="booking-alert booking-alert--error">{{ session('error') }}</p>
+        @endif
+
+        <div class="booking-list__wrapper">
+            <table class="booking-list__table">
+                <thead>
+                    <tr>
+                        <th>Bicicleta</th>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($bookings as $booking)
+                        <tr>
+                            <td>{{ $booking->bike->model }}</td>
+                            <td>{{ $booking->start_time->format('d/m/Y H:i') }}</td>
+                            <td>{{ $booking->end_time->format('d/m/Y H:i') }}</td>
+                            <td>{{ number_format($booking->total_cost, 2, ',', '.') }} €</td>
+                            <td>
+                                <span class="booking-status booking-status--{{ $booking->status }}">
+                                    {{ $statusLabels[$booking->status] ?? $booking->status }}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="booking-list__actions">
+                                    <a href="{{ route('bookings.show', $booking) }}"
+                                       class="booking-button booking-button--secondary booking-button--small">Ver</a>
+
+                                    @if ($booking->status === 'pending')
+                                        <form method="POST" action="{{ route('bookings.cancel', $booking) }}"
+                                              onsubmit="return confirm('¿Seguro que quieres cancelar esta reserva?');">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit" class="booking-button booking-button--danger booking-button--small">
+                                                Cancelar
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="booking-list__empty">
+                                Aún no tienes reservas.
+                                <a href="{{ route('bikes.index') }}" class="booking-link">Ver catálogo</a>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+        @if ($bookings instanceof \Illuminate\Pagination\AbstractPaginator && $bookings->hasPages())
+            <div class="booking-list__pagination">
+                {{ $bookings->links() }}
+            </div>
+        @endif
+    </section>
 @endsection
