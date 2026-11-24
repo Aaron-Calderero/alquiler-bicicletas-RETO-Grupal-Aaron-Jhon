@@ -15,16 +15,15 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="light">
-        <div class="">
-            @include('layouts.navigation')
+        
+        @include('layouts.navigation')
 
-            <!-- Page Content -->
-            <main>
-                @yield('content')
-            </main>
+        <!-- Page Content -->
+        <main class="main">
+            @yield('content')
+        </main>
 
-            @include('layouts.footer')
+        @include('layouts.footer')
 
-        </div>
     </body>
 </html>
