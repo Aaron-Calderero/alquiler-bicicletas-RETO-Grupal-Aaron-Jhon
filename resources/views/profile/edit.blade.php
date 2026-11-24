@@ -1,31 +1,21 @@
 @extends('layouts.app')
 
+@section('title', 'Perfil')
+
 @section('content')
-    <x-slot name="header">
-        <h2 class="">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+    <div class="profile">
+        <h1 class="profile__page-title">Perfil</h1>
+        <div class="profile__card">
+            @include('profile.partials.update-profile-information-form')
+        </div>
 
-    <div class="">
-        <div class="">
-            <div class="">
-                <div class="">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
+        <div class="profile__card">
+            @include('profile.partials.update-password-form')
+        </div>
 
-            <div class="">
-                <div class="">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="">
-                <div class="">
-                    @include('profile.partials.delete-user-form')
-                </div>
-            </div>
+        <div class="profile__card">
+            @include('profile.partials.delete-user-form')
         </div>
     </div>
+
 @endsection

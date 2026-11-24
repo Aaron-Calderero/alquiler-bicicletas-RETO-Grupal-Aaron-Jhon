@@ -1,63 +1,57 @@
-<section>
-    <header>
-        <h2 class="">
-            {{ __('Profile Information') }}
-        </h2>
-
-        <p class="">
-            {{ __("Update your account's profile information and email address.") }}
-        </p>
+<section class="profile__section">
+    <header class="profile__header">
+        <h2 class="profile__title">Información del perfil</h2>
+        <p class="profile__text">Actualiza tu nombre y tu dirección de email.</p>
     </header>
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="">
+    <form method="post" action="{{ route('profile.update') }}" class="profile__form">
         @csrf
         @method('patch')
 
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="" :messages="$errors->get('name')" />
+        <div class="profile__group">
+            <label for="name" class="profile__label">Nombre</label>
+            <input id="name" name="name" type="text"
+                   value="{{ old('name', $user->name) }}"
+                   class="profile__input @error('name') profile__input--invalid @enderror"
+                   required autofocus autocomplete="name">
+            @error('name')
+                <span class="profile__error">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="" :messages="$errors->get('email')" />
+        <div class="profile__group">
+            <label for="email" class="profile__label">Email</label>
+            <input id="email" name="email" type="email"
+                   value="{{ old('email', $user->email) }}"
+                   class="profile__input @error('email') profile__input--invalid @enderror"
+                   required autocomplete="username">
+            @error('email')
+                <span class="profile__error">{{ $message }}</span>
+            @enderror
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="">
-                        {{ __('Your email address is unverified.') }}
+                <p class="profile__text">
+                    Tu email no está verificado.
+                    <button form="send-verification" class="profile__link-button">
+                        Pulsa aquí para reenviar el email de verificación.
+                    </button>
+                </p>
 
-                        <button form="send-verification" class="">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
-
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
-                </div>
+                @if (session('status') === 'verification-link-sent')
+                    <p class="profile__saved">Te hemos enviado un nuevo enlace de verificación.</p>
+                @endif
             @endif
         </div>
 
-        <div class="">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+        <div class="profile__actions">
+            <button type="submit" class="profile__button">Guardar</button>
 
             @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class=""
-                >{{ __('Saved.') }}</p>
+                <p class="profile__saved">Guardado.</p>
             @endif
         </div>
     </form>

@@ -1,55 +1,54 @@
-<section class="">
-    <header>
-        <h2 class="">
-            {{ __('Delete Account') }}
-        </h2>
-
-        <p class="">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
+<section class="profile__section">
+    <header class="profile__header">
+        <h2 class="profile__title">Eliminar cuenta</h2>
+        <p class="profile__text">
+            Cuando elimines tu cuenta, todos tus datos se borrarán de forma permanente.
+            Antes de continuar, descarga cualquier información que quieras conservar.
         </p>
     </header>
 
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}</x-danger-button>
+    <button type="button"
+            class="profile__button profile__button--danger"
+            onclick="document.getElementById('confirm-user-deletion').showModal()">
+        Eliminar cuenta
+    </button>
 
-    <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('profile.destroy') }}" class="">
+    <dialog id="confirm-user-deletion" class="profile__dialog">
+        <form method="post" action="{{ route('profile.destroy') }}" class="profile__form">
             @csrf
             @method('delete')
 
-            <h2 class="">
-                {{ __('Are you sure you want to delete your account?') }}
-            </h2>
+            <h2 class="profile__title">¿Seguro que quieres eliminar tu cuenta?</h2>
 
-            <p class="">
-                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+            <p class="profile__text">
+                Esta acción es permanente. Escribe tu contraseña para confirmar.
             </p>
 
-            <div class="">
-                <x-input-label for="password" value="{{ __('Password') }}" class="" />
-
-                <x-text-input
-                    id="password"
-                    name="password"
-                    type="password"
-                    class=""
-                    placeholder="{{ __('Password') }}"
-                />
-
-                <x-input-error :messages="$errors->userDeletion->get('password')" class="" />
+            <div class="profile__group">
+                <label for="delete_password" class="profile__label">Contraseña</label>
+                <input id="delete_password" name="password" type="password"
+                       class="profile__input @error('password', 'userDeletion') profile__input--invalid @enderror"
+                       placeholder="Contraseña">
+                @error('password', 'userDeletion')
+                    <span class="profile__error">{{ $message }}</span>
+                @enderror
             </div>
 
-            <div class="">
-                <x-secondary-button x-on:click="$dispatch('close')">
-                    {{ __('Cancel') }}
-                </x-secondary-button>
+            <div class="profile__actions profile__actions--end">
+                <button type="button"
+                        class="profile__button profile__button--secondary"
+                        onclick="this.closest('dialog').close()">
+                    Cancelar
+                </button>
 
-                <x-danger-button class="">
-                    {{ __('Delete Account') }}
-                </x-danger-button>
+                <button type="submit" class="profile__button profile__button--danger">
+                    Eliminar cuenta
+                </button>
             </div>
         </form>
-    </x-modal>
+    </dialog>
+
+    @if ($errors->userDeletion->isNotEmpty())
+        <script>document.getElementById('confirm-user-deletion').showModal();</script>
+    @endif
 </section>
