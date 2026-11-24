@@ -18,7 +18,7 @@
 
 .bike-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     place-items: center;
     gap: var(--spacing-lg);
     margin: var(--spacing-md);
@@ -45,13 +45,15 @@
     padding: var(--spacing-md);
 }
 
+.bike-section__title,
 .bike-card__title {
     padding: 0;
     margin: 0;
     color: var(--md-sys-color-on-surface);
 }
 
-.bike-card__model {
+.bike-card__model,
+.bike-card__status {
     color: var(--md-sys-color-on-surface-variant);
 }
 
