@@ -1,3 +1,7 @@
+@props([
+    'id' => 'switch-button',
+])
+
 <div>
-    <button id="switch-button" class="switch-button">{{ $slot }}</button>
+    <button id="{{ $id }}" {{ $attributes->merge(['class' => 'switch-button']) }} >{{ $slot }}</button>
 </div>
