@@ -110,15 +110,6 @@
     border-color: var(--md-sys-color-error);
 }
 
-/* Quita el fondo amarillo del autocompletado del navegador */
-.login-register__input:-webkit-autofill,
-.login-register__input:-webkit-autofill:hover,
-.login-register__input:-webkit-autofill:focus {
-    -webkit-text-fill-color: var(--md-sys-color-on-surface);
-    caret-color: var(--md-sys-color-on-surface);
-    box-shadow: 0 0 0 1000px var(--md-sys-color-surface-container-lowest) inset;
-}
-
 .login-register__error {
     font-size: 0.75rem;
     color: var(--md-sys-color-error);
