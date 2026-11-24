@@ -1,49 +1,53 @@
 @extends('layouts.guest')
 
-@section('content')    
-<!-- Session Status -->
-    <x-auth-session-status class="" :status="session('status')" />
+@section('title', 'Iniciar sesión')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="" />
+@section('content')
+    <section class="login">
+        <div class="login__tabs">
+            <a href="{{ route('register') }}" class="login__tab">Register</a>
+            <a href="{{ route('login') }}" class="login__tab login__tab--active">login</a>
         </div>
 
-        <!-- Password -->
-        <div class="">
-            <x-input-label for="password" :value="__('Password')" />
+        <div class="login__card">
+            <h2 class="login__title">Login</h2>
 
-            <x-text-input id="password" class=""
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="">
-            <label for="remember_me" class="">
-                <input id="remember_me" type="checkbox" class="" name="remember">
-                <span class="">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="">
-            @if (Route::has('password.request'))
-                <a class="" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
+            @if (session('status'))
+                <p class="login__status">{{ session('status') }}</p>
             @endif
 
-            <x-primary-button class="">
-                {{ __('Log in') }}
-            </x-primary-button>
+            <form method="POST" action="{{ route('login') }}" class="login__form">
+                @csrf
+
+                <div class="login__group">
+                    <label for="email" class="login__label">Email</label>
+                    <input id="email" type="email" name="email" value="{{ old('email') }}"
+                           class="login__input" required autofocus autocomplete="username">
+                    @error('email')
+                        <span class="login__error">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="login__group">
+                    <label for="password" class="login__label">Contraseña</label>
+                    <input id="password" type="password" name="password"
+                           class="login__input" required autocomplete="current-password">
+                    @error('password')
+                        <span class="login__error">{{ $message }}</span>
+                    @enderror
+
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}" class="login__link">¿Forgot your password?</a>
+                    @endif
+                </div>
+
+                <label for="remember_me" class="login__remember">
+                    <input id="remember_me" type="checkbox" name="remember">
+                    Remember me
+                </label>
+
+                <button type="submit" class="login__button">login</button>
+            </form>
         </div>
-    </form>
+    </section>
 @endsection
