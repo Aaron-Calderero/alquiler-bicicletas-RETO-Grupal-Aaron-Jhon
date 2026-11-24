@@ -1,0 +1,87 @@
+.booking-list {
+    max-width: 1000px;
+    margin: var(--spacing-xl) auto;
+    padding: 0 var(--spacing-md);
+    box-sizing: border-box;
+    font-family: var(--font-primary);
+    color: var(--md-sys-color-on-surface);
+}
+
+.booking-list__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.booking-list__title {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+/* El contenedor permite scroll horizontal en pantallas pequeñas */
+.booking-list__wrapper {
+    overflow-x: auto;
+    background-color: var(--md-sys-color-surface-container-lowest);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: var(--border-radius);
+    box-shadow: 1px 2px 6px color-mix(in srgb, var(--md-sys-color-shadow) 20%, transparent);
+}
+
+.booking-list__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.booking-list__table th,
+.booking-list__table td {
+    padding: 12px var(--spacing-md);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.booking-list__table thead th {
+    font-size: 0.75rem;
+    color: var(--md-sys-color-on-primary);
+    background-color: var(--md-sys-color-primary);
+}
+
+.booking-list__table tbody tr + tr td {
+    border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.booking-list__table tbody tr:hover {
+    background-color: var(--md-sys-color-surface-container-low);
+}
+
+.booking-list__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.booking-list__actions form {
+    margin: 0;
+}
+
+.booking-list__table .booking-list__empty {
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+    white-space: normal;
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.booking-list__pagination {
+    margin-top: var(--spacing-md);
+}
+
+@media (max-width: 560px) {
+    .booking-list__header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

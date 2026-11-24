@@ -22,5 +22,10 @@
 @import './pages/bikes/index.css';
 @import './pages/bikes/show.css';
 
+@import './pages/bookings/common.css';
+@import './pages/bookings/index.css';
+@import './pages/bookings/show.css';
+@import './pages/bookings/create.css';
+
 @import './login-register/login-register.css';
 @import './perfil/perfil.css';
