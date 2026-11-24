@@ -8,6 +8,9 @@
     <nav class="navbar">
 
         <div class="navbar__links">
+
+            <x-switch.button>Cambiar tema</x-switch.button>
+
             <a href="{{ route('bikes.index') }}" class="navbar__link">Bikes</a>
 
             @auth
