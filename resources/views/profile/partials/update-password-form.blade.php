@@ -1,47 +1,48 @@
-<section>
-    <header>
-        <h2 class="">
-            {{ __('Update Password') }}
-        </h2>
-
-        <p class="">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
-        </p>
+<section class="profile__section">
+    <header class="profile__header">
+        <h2 class="profile__title">Cambiar contraseña</h2>
+        <p class="profile__text">Usa una contraseña larga y aleatoria para mantener tu cuenta segura.</p>
     </header>
 
-    <form method="post" action="{{ route('password.update') }}" class="">
+    <form method="post" action="{{ route('password.update') }}" class="profile__form">
         @csrf
         @method('put')
 
-        <div>
-            <x-input-label for="update_password_current_password" :value="__('Current Password')" />
-            <x-text-input id="update_password_current_password" name="current_password" type="password" class="" autocomplete="current-password" />
-            <x-input-error :messages="$errors->updatePassword->get('current_password')" class="" />
+        <div class="profile__group">
+            <label for="update_password_current_password" class="profile__label">Contraseña actual</label>
+            <input id="update_password_current_password" name="current_password" type="password"
+                   class="profile__input @error('current_password', 'updatePassword') profile__input--invalid @enderror"
+                   autocomplete="current-password">
+            @error('current_password', 'updatePassword')
+                <span class="profile__error">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div>
-            <x-input-label for="update_password_password" :value="__('New Password')" />
-            <x-text-input id="update_password_password" name="password" type="password" class="" autocomplete="new-password" />
-            <x-input-error :messages="$errors->updatePassword->get('password')" class="" />
+        <div class="profile__group">
+            <label for="update_password_password" class="profile__label">Nueva contraseña</label>
+            <input id="update_password_password" name="password" type="password"
+                   class="profile__input @error('password', 'updatePassword') profile__input--invalid @enderror"
+                   autocomplete="new-password">
+            @error('password', 'updatePassword')
+                <span class="profile__error">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div>
-            <x-input-label for="update_password_password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password" class="" autocomplete="new-password" />
-            <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="" />
+        <div class="profile__group">
+            <label for="update_password_password_confirmation" class="profile__label">Confirmar contraseña</label>
+            <input id="update_password_password_confirmation" name="password_confirmation" type="password"
+                   class="profile__input @error('password_confirmation', 'updatePassword') profile__input--invalid @enderror"
+                   autocomplete="new-password">
+            @error('password_confirmation', 'updatePassword')
+                <span class="profile__error">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div class="">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+        <div class="profile__actions">
+            <button type="submit" class="profile__button">Guardar</button>
 
             @if (session('status') === 'password-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class=""
-                >{{ __('Saved.') }}</p>
+                <p class="profile__saved">Guardado.</p>
             @endif
         </div>
     </form>
