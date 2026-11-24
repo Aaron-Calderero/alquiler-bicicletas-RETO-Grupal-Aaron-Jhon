@@ -1,16 +1,4 @@
 :root {
-    --color-primary: #31BC38;
-    --color-secondary: #3F8A43;
-    --color-tertiary: #39573B;
-    --color-quaternary: #2C332C;
-    --color-quinary: #263326;
-
-    --bg-page: #F4F4F4;
-    --bg-surface: white;
-    --text-primary: #263326;
-    --text-on-primary: white;
-    --border-color: #d9d9d9;
-
     --font-primary: "Merriweather", serif;
     --spacing-xs: 4px;
     --spacing-sm: 8px;
@@ -18,11 +6,4 @@
     --spacing-lg: 24px;
     --spacing-xl: 32px;
     --border-radius: 8px;
-}
-
-.dark {
-    --bg-page: #181c18;
-    --bg-surface: var(--color-quinary);
-    --text-primary: #F4F4F4;
-    --border-color: var(--color-tertiary);
 }

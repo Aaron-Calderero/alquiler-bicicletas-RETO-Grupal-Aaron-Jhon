@@ -10,10 +10,28 @@
     <section class="bike-section" >
         <h2 class="bike-section__title" >Catalog</h2>
 
-        <div class="bike-grid">
+        <div class="bike-section__controls">
+            <select name="filter-model" id="filter-model" class="bike-section__select">
+                <option value="all">All models</option>
+                @foreach($bikes->pluck('model')->unique() as $model)
+                    <option value="{{ strtolower($model) }}">{{ __($model) }}</option>
+                @endforeach
+             </select>
+            <select name="sort-price" id="sort-price" class="bike-section__select">
+                <option value="default">Default order</option>
+                <option value="asc">Price: low to high</option>
+                <option value="desc">Price: high to low</option>
+            </select>
+        </div>
+
+        <p id="no-results" class="bike-section__empty bike-section__empty--hidden">
+            No bicycles match the selected filters.
+        </p>
+
+        <div id="bike-grid" class="bike-grid">
             @forelse($bikes as $bike)
 
-            <x-bikes.card>
+            <x-bikes.card data-model="{{ strtolower($bike->model) }}" data-price="{{ $bike->price_per_hour }}">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFZI2zKcRP0wDYg-riMT4KSMXaAhYfDIi86i38dUhAE49SPncAh8TLiCO3&s=10" alt="Imagen de una bicicleta" class="bike-card__image">
                 <div class="bike-card__content">
                     <h3 class="bike-card__title">{{ $bike->serial_number }}</h3>

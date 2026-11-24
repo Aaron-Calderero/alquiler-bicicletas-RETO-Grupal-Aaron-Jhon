@@ -1,7 +1,7 @@
 <header class="header">
     <div class="header__brand">
-        <a href="{{ route('bikes.index') }}" class="header__logo">
-            <x-application-logo style="width: 8rem;" />
+        <a href="{{ route('bikes.index') }}">
+            <x-application-logo style="width: 8rem;"/>
         </a>
         <h1 class="header__title">Bill-Bike Rental</h1>
     </div>
