@@ -1,54 +1,55 @@
 @extends('layouts.guest')
 
+@section('title', 'Registro')
+
 @section('content')    
-<form method="POST" action="{{ route('register') }}">
-        @csrf
-
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="" />
+    <section class="login">
+        <div class="login__tabs">
+            <a href="{{ route('register') }}" class="login__tab login__tab--active">Register</a>
+            <a href="{{ route('login') }}" class="login__tab">Login</a>
         </div>
 
-        <!-- Email Address -->
-        <div class="">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="" />
+        <div class="login__card">
+            <h2 class="login__title">Register</h2>
+
+            <form method="POST" action="{{ route('register') }}" class="login__form">
+                @csrf
+
+                <div class="login__group">
+                    <label for="name" class="login__label">Nombre</label>
+                    <input id="name" type="text" name="name" value="{{ old('name') }}"
+                           class="login__input" required autofocus autocomplete="name">
+                    @error('name')
+                        <span class="login__error">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="login__group">
+                    <label for="email" class="login__label">Email</label>
+                    <input id="email" type="email" name="email" value="{{ old('email') }}"
+                           class="login__input" required autocomplete="username">
+                    @error('email')
+                        <span class="login__error">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="login__group">
+                    <label for="password" class="login__label">Contraseña</label>
+                    <input id="password" type="password" name="password"
+                           class="login__input" required autocomplete="new-password">
+                    @error('password')
+                        <span class="login__error">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="login__group">
+                    <label for="password_confirmation" class="login__label">Confirmar contraseña</label>
+                    <input id="password_confirmation" type="password" name="password_confirmation"
+                           class="login__input" required autocomplete="new-password">
+                </div>
+
+                <button type="submit" class="login__button">Register</button>
+            </form>
         </div>
-
-        <!-- Password -->
-        <div class="">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class=""
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class=""
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="" />
-        </div>
-
-        <div class="">
-            <a class="" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
+    </section>
 @endsection
