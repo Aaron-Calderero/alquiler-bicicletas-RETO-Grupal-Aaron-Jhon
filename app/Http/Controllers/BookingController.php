@@ -32,14 +32,14 @@ class BookingController extends Controller
             'end_time' => 'required|date|after:start_time',
         ]);
 
-        $bike = Bike::findOrFail(request->bike_id);
+        $bike = Bike::findOrFail($request->bike_id);
 
         if ($bike->status !== 'available') {
             return back()->withErrors(['bike_id' => 'La bicicleta seleccionada no esta disponible.']);
         }
 
-        $startTime = Carbon::parse(request->start_time);
-        $endTime = Carbon::parse(request->end_time);
+        $startTime = Carbon::parse($request->start_time);
+        $endTime = Carbon::parse($request->end_time);
 
         $hasOverlap = Booking::where('bike_id', $bike->id)
             ->whereIn('status', ['pending', 'active'])
@@ -57,7 +57,7 @@ class BookingController extends Controller
             return back()->withInput()->withErrors(['start_time' => 'La bicicleta ya esta reservada en ese horario.']);
         }
 
-        $hours = startTime->diffInHours(endTime);
+        $hours = $startTime->diffInHours($endTime);
         $hours = $hours > 0 ? $hours : 1;
         $totalCost = $hours * $bike->price_per_hour;
 
