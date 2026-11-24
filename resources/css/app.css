@@ -29,3 +29,6 @@
 
 @import './login-register/login-register.css';
 @import './perfil/perfil.css';
+
+/* Componentes */
+@import './components/switch_button.css';
