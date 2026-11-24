@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+/* Standard */
+@import './base/light.css';
+@import './base/dark.css';
+
+/* Medium contrast */
+@import './base/light-mc.css';
+@import './base/dark-mc.css';
+
+/* High contrast */
+@import './base/light-hc.css';
+@import './base/light-hc.css';
+
+/* Variables de espaciado, tipografia */
+@import './base/variables.css';
+
+@import './layouts/header.css';
+@import './layouts/appLayout.css';
+@import './layouts/footer.css';
+
+@import './pages/bikes/index.css';
+@import './pages/bikes/show.css';
+
+@import './pages/bookings/common.css';
+@import './pages/bookings/index.css';
+@import './pages/bookings/show.css';
+@import './pages/bookings/create.css';
+
+@import './login-register/login-register.css';
+@import './perfil/perfil.css';

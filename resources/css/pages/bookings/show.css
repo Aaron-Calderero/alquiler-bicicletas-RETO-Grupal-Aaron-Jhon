@@ -1,0 +1,97 @@
+.booking-detail {
+    max-width: 720px;
+    margin: var(--spacing-xl) auto;
+    padding: 0 var(--spacing-md);
+    box-sizing: border-box;
+    font-family: var(--font-primary);
+    color: var(--md-sys-color-on-surface);
+}
+
+.booking-detail__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    font-size: 0.85rem;
+}
+
+.booking-detail__card {
+    padding: var(--spacing-lg);
+    background-color: var(--md-sys-color-surface-container-lowest);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: var(--border-radius);
+    box-shadow: 1px 2px 6px color-mix(in srgb, var(--md-sys-color-shadow) 20%, transparent);
+}
+
+.booking-detail__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.booking-detail__title {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+.booking-detail__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    margin: 0;
+}
+
+.booking-detail__item {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--md-sys-color-surface-container);
+    border-radius: var(--border-radius);
+}
+
+.booking-detail__item dt {
+    font-size: 0.7rem;
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.booking-detail__item dd {
+    margin: 2px 0 0;
+    font-weight: 700;
+}
+
+.booking-detail__item--total {
+    grid-column: 1 / -1;
+    color: var(--md-sys-color-on-primary-container);
+    background-color: var(--md-sys-color-primary-container);
+}
+
+.booking-detail__item--total dt {
+    color: inherit;
+}
+
+.booking-detail__item--total dd {
+    font-size: 1.4rem;
+}
+
+.booking-detail__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin: var(--spacing-lg) 0 0;
+}
+
+@media (max-width: 560px) {
+    .booking-detail__card {
+        padding: var(--spacing-md);
+    }
+
+    .booking-detail__list {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-detail__actions .booking-button {
+        width: 100%;
+    }
+}

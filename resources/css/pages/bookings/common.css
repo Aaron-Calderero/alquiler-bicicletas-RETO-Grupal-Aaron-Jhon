@@ -1,0 +1,118 @@
+.booking-alert {
+    margin: 0 0 var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.85rem;
+    border-radius: var(--border-radius);
+}
+
+.booking-alert--success {
+    color: var(--md-sys-color-on-primary-container);
+    background-color: var(--md-sys-color-primary-container);
+}
+
+.booking-alert--error {
+    color: var(--md-sys-color-on-error-container);
+    background-color: var(--md-sys-color-error-container);
+}
+
+/* ===== Estado de la reserva ===== */
+.booking-status {
+    display: inline-block;
+    padding: 2px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.booking-status--pending {
+    color: var(--md-sys-color-on-secondary-container);
+    background-color: var(--md-sys-color-secondary-container);
+}
+
+.booking-status--active {
+    color: var(--md-sys-color-on-primary);
+    background-color: var(--md-sys-color-primary);
+}
+
+.booking-status--completed {
+    color: var(--md-sys-color-on-surface-variant);
+    background-color: var(--md-sys-color-surface-container-high);
+}
+
+.booking-status--cancelled {
+    color: var(--md-sys-color-on-error-container);
+    background-color: var(--md-sys-color-error-container);
+}
+
+/* ===== Botones ===== */
+.booking-button {
+    display: inline-block;
+    padding: 10px var(--spacing-lg);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    color: var(--md-sys-color-on-primary);
+    background-color: var(--md-sys-color-primary);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    box-shadow: 1px 2px 4px color-mix(in srgb, var(--md-sys-color-shadow) 30%, transparent);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.booking-button:hover {
+    background-color: var(--md-sys-color-secondary);
+}
+
+.booking-button:active {
+    transform: translateY(1px);
+}
+
+.booking-button:focus-visible,
+.booking-link:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+}
+
+.booking-button--secondary {
+    color: var(--md-sys-color-on-surface);
+    background-color: var(--md-sys-color-surface-container);
+    border-color: var(--md-sys-color-outline-variant);
+}
+
+.booking-button--secondary:hover {
+    background-color: var(--md-sys-color-surface-container-high);
+}
+
+.booking-button--danger {
+    color: var(--md-sys-color-on-error);
+    background-color: var(--md-sys-color-error);
+}
+
+.booking-button--danger:hover {
+    background-color: color-mix(in srgb, var(--md-sys-color-error) 85%, black);
+}
+
+.booking-button--small {
+    padding: 4px 12px;
+    font-size: 0.8rem;
+}
+
+/* ===== Enlaces ===== */
+.booking-link {
+    color: var(--md-sys-color-primary);
+    text-decoration: none;
+}
+
+.booking-link:hover {
+    text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .booking-button {
+        transition: none;
+    }
+}
