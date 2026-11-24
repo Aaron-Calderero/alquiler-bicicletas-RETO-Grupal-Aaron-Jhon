@@ -1,54 +1,61 @@
-@extends('layouts.guest')
+@extends('layouts.app')
 
 @section('title', 'Registro')
 
-@section('content')    
-    <section class="login">
-        <div class="login__tabs">
-            <a href="{{ route('register') }}" class="login__tab login__tab--active">Register</a>
-            <a href="{{ route('login') }}" class="login__tab">Login</a>
+@section('content')
+    <section class="login-register">
+        <div class="login-register__tabs">
+            <a href="{{ route('register') }}" class="login-register__tab login-register__tab--active" aria-current="page">Registro</a>
+            <a href="{{ route('login') }}" class="login-register__tab">Inicio sesion</a>
         </div>
 
-        <div class="login__card">
-            <h2 class="login__title">Register</h2>
+        <div class="login-register__card">
+            <h2 class="login-register__title">Registro</h2>
 
-            <form method="POST" action="{{ route('register') }}" class="login__form">
+            <form method="POST" action="{{ route('register') }}" class="login-register__form">
                 @csrf
 
-                <div class="login__group">
-                    <label for="name" class="login__label">Nombre</label>
+                <div class="login-register__group">
+                    <label for="name" class="login-register__label">Nombre</label>
                     <input id="name" type="text" name="name" value="{{ old('name') }}"
-                           class="login__input" required autofocus autocomplete="name">
+                           class="login-register__input @error('name') login-register__input--invalid @enderror"
+                           required autofocus autocomplete="name">
                     @error('name')
-                        <span class="login__error">{{ $message }}</span>
+                        <span class="login-register__error">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <div class="login__group">
-                    <label for="email" class="login__label">Email</label>
+                <div class="login-register__group">
+                    <label for="email" class="login-register__label">Email</label>
                     <input id="email" type="email" name="email" value="{{ old('email') }}"
-                           class="login__input" required autocomplete="username">
+                           class="login-register__input @error('email') login-register__input--invalid @enderror"
+                           required autocomplete="username">
                     @error('email')
-                        <span class="login__error">{{ $message }}</span>
+                        <span class="login-register__error">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <div class="login__group">
-                    <label for="password" class="login__label">Contraseña</label>
+                <div class="login-register__group">
+                    <label for="password" class="login-register__label">Contraseña</label>
                     <input id="password" type="password" name="password"
-                           class="login__input" required autocomplete="new-password">
+                           class="login-register__input @error('password') login-register__input--invalid @enderror"
+                           required autocomplete="new-password">
                     @error('password')
-                        <span class="login__error">{{ $message }}</span>
+                        <span class="login-register__error">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <div class="login__group">
-                    <label for="password_confirmation" class="login__label">Confirmar contraseña</label>
+                <div class="login-register__group">
+                    <label for="password_confirmation" class="login-register__label">Confirmar contraseña</label>
                     <input id="password_confirmation" type="password" name="password_confirmation"
-                           class="login__input" required autocomplete="new-password">
+                           class="login-register__input @error('password_confirmation') login-register__input--invalid @enderror"
+                           required autocomplete="new-password">
+                    @error('password_confirmation')
+                        <span class="login-register__error">{{ $message }}</span>
+                    @enderror
                 </div>
 
-                <button type="submit" class="login__button">Register</button>
+                <button type="submit" class="login-register__button">Registrarse</button>
             </form>
         </div>
     </section>
