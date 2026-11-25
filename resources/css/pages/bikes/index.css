@@ -69,10 +69,6 @@
     border-radius: var(--border-radius);
 }
 
-.maintenance {
-    background-color: var(--md-);
-}
-
 .bike-card__price {
     color: var(--md-sys-color-primary);
 }
