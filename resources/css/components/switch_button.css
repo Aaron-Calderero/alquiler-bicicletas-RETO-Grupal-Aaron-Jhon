@@ -1,11 +1,14 @@
 .switch-button {
-    background-color: var(--md-sys-color-primary-container);
-    color: var(--md-sys-color-on-primary-container);
-    border: 1px solid var(--md-sys-color-outline-variant);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    font-weight: bold;
-    transition: .2s ease;
+    appearance: none;
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 0.4rem 0;
+    cursor: pointer;
+    color: var(--md-sys-color-on-primary);
+    font: inherit;
+    font-size: 1.1rem;
+    transition: transform .2s ease, border-color .2s ease;
 
     display: inline-flex;
     flex-direction: column;
@@ -14,15 +17,21 @@
 }
 
 .switch-button:after {
-    content: 'Cambiar tema';
+    content: '🌙 Oscuro';
     height: 0;
     overflow: hidden;
     visibility: hidden;
-    font-weight: bold;
 }
 
-.switch-button:hover {
-    background-color: var(--md-sys-color-secondary-container);
-    color: var(--md-sys-color-on-secondary-container);
+@media (hover: hover) and (pointer: fine) {
+    .switch-button:hover {
+        transform: scale(1.05);
+        border-bottom-color: currentColor;
+    }
 }
 
+.header .switch-button, .header .switch-button:hover, .header .switch-button:focus, .header .switch-button:focus-visible, .header .switch-button:active {
+    color: var(--md-sys-color-on-primary);
+    background: none;
+    outline: none;
+}

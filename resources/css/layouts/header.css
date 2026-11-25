@@ -7,6 +7,8 @@
     font-family: var(--font-primary);
     color: var(--md-sys-color-on-primary);
     padding: 5px;
+    position: relative;
+    z-index: 1000;
 }
 
 .header__brand {
@@ -22,6 +24,10 @@
 
 .header__logo path {
     fill: currentColor;
+}
+
+.header__brand .header__logo {
+    width: 8rem;
 }
 
 .header__title {
@@ -57,30 +63,251 @@
     font-weight: bold;
 }
 
+/* Elementos del desplegable: se ven como los enlaces del menu */
+.user-menu__item,
 .navbar__logout-button {
-    background-color: var(--md-sys-color-primary-container);
-    color: var(--md-sys-color-on-primary-container);
-    border: 1px solid var(--md-sys-color-outline-variant);
+    appearance: none;
+    display: inline-block;
+    padding: .4rem 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    color: var(--md-sys-color-on-primary);
+    font: inherit;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: transform .2s ease, border-color .2s ease;
+}
+
+.user-menu__item:hover,
+.navbar__logout-button:hover {
+    transform: scale(1.05);
+    border-bottom-color: currentColor;
+}
+
+/* Cerrar sesion: texto rojo (claro sobre el verde oscuro, oscuro sobre el verde claro) */
+.navbar__logout-button {
+    color: rgb(255 138 128);
+}
+
+.dark .navbar__logout-button {
+    color: rgb(186 26 26);
+}
+
+.header__right {
+    display: flex;
+    align-items: center;
+}
+
+.header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/* Boton hamburguesa: oculto en escritorio */
+.header__actions .burger {
+    display: none;
+    appearance: none;
+    position: relative;
+    box-sizing: border-box;
+    width: 36px;
+    height: 30px;
+    padding: 0;
+    cursor: pointer;
+    background-color: var(--md-sys-color-primary-container, rgb(190 240 178));
+    color: var(--md-sys-color-on-primary-container, rgb(38 80 34));
+    border: 1px solid var(--md-sys-color-outline-variant, rgb(194 200 188));
     border-radius: var(--border-radius);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    font-weight: bold;
     transition: .2s ease;
 }
 
-.navbar__logout-button:hover {
-    background-color: var(--md-sys-color-secondary-container);
-    color: var(--md-sys-color-on-secondary-container);
+.header__actions .burger:hover,
+.header__actions .burger:focus-visible {
+    background-color: var(--md-sys-color-secondary-container, rgb(187 240 181));
+    color: var(--md-sys-color-on-secondary-container, rgb(34 80 37));
+}
+
+/* Las 3 barras se colocan desde el centro exacto del boton */
+.burger__bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 18px;
+    height: 2px;
+    margin: -1px 0 0 -9px;
+    border-radius: 2px;
+    background-color: currentColor;
+    transition: transform .25s ease, opacity .2s ease;
+}
+
+.burger__bar:nth-child(1) { transform: translateY(-6px); }
+.burger__bar:nth-child(3) { transform: translateY(6px); }
+
+/* Al abrir: las barras 1 y 3 giran sobre el centro y forman una X */
+.burger[aria-expanded="true"] .burger__bar:nth-child(1) { transform: rotate(45deg); }
+.burger[aria-expanded="true"] .burger__bar:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] .burger__bar:nth-child(3) { transform: rotate(-45deg); }
+
+/* Menu de usuario (escritorio y movil) */
+.user-menu {
+    position: relative;
+}
+
+/* Boton de usuario: se ve como los enlaces (sin fondo ni borde) */
+.user-menu__toggle {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    max-width: 8rem;
+    padding: .4rem 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    color: var(--md-sys-color-on-primary);
+    font: inherit;
+    font-size: 1.1rem;
+    transition: transform .2s ease, border-color .2s ease;
+}
+
+.user-menu__toggle:hover,
+.user-menu__toggle:focus-visible {
+    transform: scale(1.05);
+    border-bottom-color: currentColor;
+}
+
+.user-menu__name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-menu__arrow {
+    font-size: .8rem;
+    transition: transform .2s ease;
+}
+
+.user-menu__toggle[aria-expanded="true"] .user-menu__arrow {
+    transform: rotate(180deg);
+}
+
+.user-menu__panel {
+    display: none;
+    position: absolute;
+    top: calc(100% + var(--spacing-sm));
+    right: 0;
+    z-index: 1001;
+    min-width: 10rem;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md);
+    background-color: var(--md-sys-color-primary);
+    border: 1px solid rgb(255 255 255 / 0.35);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 16px rgb(0 0 0 / 0.3);
+}
+
+.user-menu__panel.is-open {
+    display: flex;
+}
+
+.user-menu__panel .navbar__logout-form {
+    margin: 0;
+}
+
+/* Escritorio: tema | enlaces | usuario en una sola fila */
+@media (min-width: 769px) {
+
+    .header__actions {
+        display: contents;
+    }
+
+    /* El usuario va al final de la fila, despues de los enlaces */
+    .user-menu {
+        order: 1;
+        margin-right: var(--spacing-md);
+    }
+
 }
 
 @media (max-width: 900px) {
 
-    .navbar {
+    .header__right {
         width: 100%;
-        justify-content: center
-    };
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
     .navbar__links {
         justify-content: center;
+    }
+
+}
+
+/* Movil: menu colapsable con hamburguesa */
+@media (max-width: 768px) {
+
+    .header__right {
+        display: contents;
+    }
+
+    /* La marca se encoge para que los botones queden en la misma fila */
+    .header__brand {
+        flex: 1;
+        min-width: 0;
+        gap: var(--spacing-sm);
+    }
+
+    .header__brand .header__logo {
+        width: 4.5rem;
+    }
+
+    .header__title {
+        font-size: 1.2rem;
+    }
+
+    .header__actions {
+        margin-left: auto;
+        margin-right: var(--spacing-sm);
+    }
+
+    .header__actions .burger {
+        display: block;
+    }
+
+    /* El menu se superpone al contenido, por encima de todo */
+    .header {
+        position: relative;
+        z-index: 1000;
+    }
+
+    .navbar {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-sizing: border-box;
+        margin: 0;
+        padding: var(--spacing-md);
+        background-color: var(--md-sys-color-primary);
+        box-shadow: 0 8px 16px rgb(0 0 0 / 0.3);
+    }
+
+    .navbar.is-open {
+        display: block;
+    }
+
+    .navbar__links {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm);
     }
 
 }
