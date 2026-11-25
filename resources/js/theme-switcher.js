@@ -7,8 +7,7 @@ function esOscuro() {
     return document.body.classList.contains("dark");
 }
 
-function actualizarTexto() {
-    const switchButton = document.getElementById("switch-button");
+function actualizarTexto(switchButton) {
     switchButton.textContent = esOscuro() ? "☀️ Claro" : "🌙 Oscuro";
 }
 
@@ -27,7 +26,8 @@ export function cambiarTema() {
 
     actualizarTexto(switchButton);
     
-    switchButton.addEventListener("click", () => {
+    switchButton.addEventListener("click", (e) => {
+        if(e.detail > 0) switchButton.blur();
 
         if(body.classList.contains("light")) {
             body.classList.replace("light", "dark");
