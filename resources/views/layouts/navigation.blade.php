@@ -11,23 +11,23 @@
 
             <x-switch.button>Cambiar tema</x-switch.button>
 
-            <a href="{{ route('bikes.index') }}" class="navbar__link">Bikes</a>
+            <a href="{{ route('bikes.index') }}" class="navbar__link">Bicicletas</a>
 
             @auth
                 <a href="{{ route('bookings.index') }}" class="navbar__link">Mis reservas</a>
-                <a href="{{ route('profile.edit') }}" class="navbar__link">Profile</a>
-
-                <span class="navbar-user" class="navbar__user" >{{ Auth::user()->name }}</span>
+                <a href="{{ route('profile.edit') }}" class="navbar__link">
+                    <span class="navbar__user" >{{ Auth::user()->name }}</span>
+                </a>
 
                 <form method="POST" action="{{ route('logout') }}" class="navbar__logout-form">
                     @csrf
-                    <button type="submit" class="navbar__logout-button">Log Out</button>
+                    <button type="submit" class="navbar__logout-button">Cerrar sesion</button>
                 </form>
             @endauth
 
             @guest
-                <a href="{{ route('register') }}" class="navbar__link" >Register</a>
-                <a href="{{ route('login') }}" class="navbar__link" >Log In</a>
+                <a href="{{ route('register') }}" class="navbar__link" >Registro</a>
+                <a href="{{ route('login') }}" class="navbar__link" >Iniciar sesion</a>
             @endguest
         </div>
     </nav>
