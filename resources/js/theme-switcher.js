@@ -3,6 +3,14 @@ function guardarPreferencia(preferencia) {
     localStorage.setItem("preferencia", preferencia);
 }
 
+function esOscuro() {
+    return document.body.classList.contains("dark");
+}
+
+function actualizarTexto() {
+    const switchButton = document.getElementById("switch-button");
+    switchButton.textContent = esOscuro() ? "☀️ Claro" : "🌙 Oscuro";
+}
 
 export function cambiarTema() {
 
@@ -17,6 +25,8 @@ export function cambiarTema() {
         body.classList.add(preferencia);
     }
 
+    actualizarTexto(switchButton);
+    
     switchButton.addEventListener("click", () => {
 
         if(body.classList.contains("light")) {
@@ -27,6 +37,7 @@ export function cambiarTema() {
             guardarPreferencia("light");
         }
 
-    });
+        actualizarTexto(switchButton);
 
+    });
 }
