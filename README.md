@@ -1,3 +1,74 @@
+# Bike rent - Proyecto de laravel
+## 1. Estructura de componentes y estilos
+
+El proyecto está desarrollado con Laravel y Blade, organizando las vistas y los estilos para facilitar la reutilización y el mantenimiento del código.
+
+### Estructura de recursos:
+
+- app/: Contiene los Modelos y los Controladores.
+- routes/: Define las URLs de la web en web.php y las de acceso de usuarios en auth.php.
+- public/images y build/: Almacena las imágenes estáticas utilizadas en la página y la compilación final generada por Vite.
+- resources/views/layouts/: Contiene el esqueleto HTML común a toda la web (cabecera, menú y pie de página).
+- resources/views/components/: Almacena los componentes Blade reutilizables de la aplicación, como el interruptor de tema claro/oscuro, tarjetas de bicicletas, inputs o mensajes de error.
+- resources/views/pages/: Agrupa el contenido específico de cada pantalla que ve el usuario (vistas principales, bikes y bookings).
+- app.css y app.js: Archivos centrales que importan todo el diseño y la interactividad para compilarlos con Vite y cargarlos de una sola vez en el layout.
+
+## Estructura de archivos js:
+
+- app.js: archivo principal de JavaScript.
+- burger-menu.js: gestión del menú de navegación.
+- catalog.js: funcionalidades relacionadas con el catálogo de bicicletas.
+- theme-switcher.js: gestión del cambio de tema visual.
+
+## Carga mediante Vite
+Los archivos JavaScript se encuentran dentro de resources/js y se gestionan mediante Vite, que se encarga de compilar y cargar los recursos frontend de la aplicación.
+
+para iniciar vite se usa
+
+npm run dev
+
+## 3. Instrucciones de puesta en marcha
+
+### 1. Clonar el repositorio
+
+En la terminal, se debe ejecutar el siguiente comando para clonar el proyecto
+
+git clone https://github.com/Aaron-Calderero/alquiler-bicicletas-RETO-Grupal-Aaron-Jhon.git
+cd nombre-del-proyecto
+
+### 2. Instalar dependencias de Laravel
+Instalar las dependencias de PHP y generar la carpeta vendor mediante Composer:
+
+Instalar las dependencias del frontend:
+npm install
+
+### 3. Configurar el entorno
+
+Crear el archivo de configuración .env:
+cp .env.example .env
+
+Iniciar los contenedores de Laravel Sail:
+./vendor/bin/sail up -d
+
+Generar la clave de aplicación:
+./vendor/bin/sail artisan key:generate
+
+### 4. Configurar la base de datos
+
+Ejecutar las migraciones para crear las tablas:
+./vendor/bin/sail artisan migrate
+
+Para insertar los datos de prueba:
+./vendor/bin/sail artisan db:seed
+
+### 5. Iniciar el proyecto
+Ejecutar Vite para compilar y actualizar los recursos del frontend:
+
+npm run dev
+La aplicación estará disponible en:
+
+http://localhost
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
