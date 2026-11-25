@@ -6,6 +6,19 @@
     padding: var(--spacing-xs) var(--spacing-sm);
     font-weight: bold;
     transition: .2s ease;
+
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.switch-button:after {
+    content: 'Cambiar tema';
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    font-weight: bold;
 }
 
 .switch-button:hover {

@@ -9,7 +9,7 @@
 
         <div class="navbar__links">
 
-            <x-switch.button>Cambiar tema</x-switch.button>
+            <x-switch.button>🌙 Oscuro</x-switch.button>
 
             <a href="{{ route('bikes.index') }}" class="navbar__link">Bicicletas</a>
 
