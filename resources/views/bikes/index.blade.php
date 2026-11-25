@@ -24,8 +24,10 @@
             </select>
         </div>
 
-        @if (session('error'))
-            <p>{{ session('error') }}</p>
+        @if(session('error'))
+            <x-error-message>
+                {{ session('error') }}
+            </x-error-message>
         @endif
 
         <p id="no-results" class="bike-section__empty bike-section__empty--hidden">

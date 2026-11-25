@@ -29,3 +29,5 @@
 
 @import './login-register/login-register.css';
 @import './perfil/perfil.css';
+
+@import './components/error-message.css';
