@@ -54,7 +54,19 @@
 
 .bike-card__model,
 .bike-card__status {
+    font-weight: bold;
+}
+
+.bike-card__model {
     color: var(--md-sys-color-on-surface-variant);
+}
+
+.bike-card__status {
+    width: fit-content;
+    background-color: var(--md-sys-color-tertiary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: var(--md-sys-color-on-tertiary);
+    border-radius: var(--border-radius);
 }
 
 .bike-card__price {
@@ -95,6 +107,11 @@
 .bike-card--hidden,
 .bike-section__empty--hidden {
     display: none;
+}
+
+.bg-danger {
+    background-color: var(--md-sys-color-error);
+    color: var(--md-sys-color-on-error);
 }
 
 

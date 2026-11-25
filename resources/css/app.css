@@ -32,3 +32,4 @@
 
 /* Componentes */
 @import './components/switch_button.css';
+@import './components/error-message.css';
